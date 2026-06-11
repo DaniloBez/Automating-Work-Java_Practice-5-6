@@ -83,10 +83,11 @@ public class CalculatorTest {
     @Tag("positive")
     @DisplayName("Динамічна генерація тестів для ділення")
     Stream<DynamicTest> shouldDivideNumbersExcludeDivideByZeroTestFactory() {
-        Calculator calculator = new Calculator();
         Random random = new Random();
 
         return IntStream.rangeClosed(1, 10).mapToObj( i -> {
+            Calculator calculator = new Calculator();
+
             double a = random.nextInt(100);
             double b = random.nextInt(4);
 
