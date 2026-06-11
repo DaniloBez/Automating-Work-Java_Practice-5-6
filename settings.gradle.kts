@@ -1,0 +1,1 @@
+rootProject.name = "Practice5-6"
