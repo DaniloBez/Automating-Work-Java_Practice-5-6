@@ -97,3 +97,17 @@ tasks.register<Test>("testNegative") {
         html.required.set(true)
     }
 }
+
+configure<CheckstyleExtension> {
+    toolVersion = "13.5.0"
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+    isIgnoreFailures = false
+    isShowViolations = true
+}
+
+tasks.withType<Checkstyle> {
+    reports {
+        xml.required.set(false)
+        html.required.set(true)
+    }
+}
