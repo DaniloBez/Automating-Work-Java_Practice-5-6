@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("checkstyle")
+    `maven-publish`
 }
 
 group = "org.example"
@@ -109,5 +110,24 @@ tasks.withType<Checkstyle> {
     reports {
         xml.required.set(false)
         html.required.set(true)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
