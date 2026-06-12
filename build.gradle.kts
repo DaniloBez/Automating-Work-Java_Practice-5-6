@@ -117,6 +117,7 @@ publishing {
     publications {
         create<MavenPublication>("gpr") {
             from(components["java"])
+            artifactId = "practice-5-6"
         }
     }
 
